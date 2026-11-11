@@ -1,9 +1,7 @@
 # 🌡️ Sistema de Monitoreo de Temperatura y Humedad con Arduino
 
-**Autor:** Jocelin Salvador  
+**Autor:** Jocelin Guadalupe Salvador Flores
 **Carrera:** Ingeniería en Sistemas Computacionales  
-**Institución:** TecNM Campus Escárcega  
-
 ---
 
 ## 📋 Descripción del Proyecto
