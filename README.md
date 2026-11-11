@@ -1,106 +1,95 @@
-Sistema de monitoreo de temperatura y humedad con Arduino
+# 🌡️ Sistema de Monitoreo de Temperatura y Humedad con Arduino
 
-Descripción
-Este proyecto utiliza un Arduino UNO para medir la temperatura y la
-humedad del ambiente mediante un sensor DHT11. Los valores obtenidos se
-muestran en una pantalla LCD con módulo I2C.
+**Autor:** Jocelin Salvador  
+**Carrera:** Ingeniería en Sistemas Computacionales  
+**Institución:** TecNM Campus Escárcega  
 
-Cuando la temperatura alcanza los 40 °C o más, el sistema activa una
-alerta visual y sonora: el LED azul parpadea y el buzzer suena tres
-veces. La alarma no vuelve a activarse mientras la temperatura
-permanezca en 40 °C o más. Se habilita nuevamente cuando la temperatura
-baja de 40 °C y después vuelve a alcanzar ese límite.
+---
 
-Objetivo
-Desarrollar un sistema sencillo de monitoreo ambiental que permita
-visualizar la temperatura y la humedad, además de alertar cuando se
-detecte una temperatura elevada.
+## 📋 Descripción del Proyecto
 
-Componentes
-- Arduino UNO.
-- Sensor de temperatura y humedad DHT11.
-- Pantalla LCD de 16 × 2 con módulo I2C.
-- LED azul.
-- Resistencia para el LED (por ejemplo, 220 Ω o 330 Ω).
-- Buzzer.
-- Protoboard.
-- Cables jumper.
-- Cable USB para alimentar y programar el Arduino.
+Este proyecto utiliza un **Arduino UNO** para medir en tiempo real la temperatura y la humedad del ambiente mediante un sensor **DHT11**. Los valores obtenidos se muestran de forma clara en una pantalla **LCD con módulo I2C**.
 
-Conexiones
-  Componente                                          Conexión al Arduino
-  DHT11 (DATA)                                        A0
-LCD I2C (SDA)                                       A4
-LCD I2C (SCL)                                       A5
-LED azul (ánodo/pata larga, mediante resistencia)   Pin 8
-LED azul (cátodo/pata corta)                        GND
-Buzzer (+)                                          Pin 9
-Buzzer (−)                                          GND
-Alimentación de los módulos                         5V y GND, según corresponda
+Cuando la temperatura alcanza los **40 °C o más**, el sistema activa una alerta visual y sonora: el **LED azul** parpadea y el **buzzer** suena tres veces. La alarma no vuelve a activarse de forma repetitiva mientras la temperatura permanezca en ese rango o superior; se habilita nuevamente solo cuando la temperatura desciende y vuelve a alcanzar dicho límite.
 
-Importante: el LED debe llevar una resistencia en serie. Comprueba
-las marcas + y − del buzzer; la longitud de sus patas puede variar
-según el modelo. Comparte GND entre los componentes y el Arduino.
-Funcionamiento
-1. El Arduino inicia la pantalla LCD y el sensor DHT11.
-2. El sensor toma lecturas de temperatura y humedad.
-3. La pantalla muestra ambos valores.
-4. Si la temperatura es menor de 40 °C, la alarma permanece apagada.
-5. Si la temperatura llega a 40 °C o más, el LED y el buzzer se activan
-   tres veces.
-6. La alarma queda bloqueada mientras la temperatura siga en 40 °C o
-   más.
-7. Cuando la lectura baja de 40 °C, el sistema queda listo para
-   detectar un nuevo aumento y activar otra vez la alarma.
-   
-Requisitos de software
-- Arduino IDE.
-- Biblioteca DHT sensor library (Adafruit).
-- Biblioteca LiquidCrystal_I2C.
-- Biblioteca Wire (incluida con el entorno Arduino).
-Instala las bibliotecas desde el Administrador de bibliotecas del
-Arduino IDE si todavía no están disponibles.
+## 🎯 Objetivo
 
-Configuración
-El programa utiliza estos valores:
-- Sensor DHT11: pin A0.
-- LED azul: pin 8.
-- Buzzer: pin 9.
-- Dirección I2C de la pantalla: 0x27.
-- Umbral de alarma: 40 °C.
-- Número de avisos: 3.
-Si la pantalla no muestra información, verifica su dirección I2C;
-algunos módulos utilizan una dirección distinta de 0x27.
+Desarrollar un sistema embebido de monitoreo ambiental que permita visualizar métricas atmosféricas críticas y alertar automáticamente al detectar condiciones de temperatura elevada.
 
-Prueba del proyecto
-1. Conecta los componentes de acuerdo con la tabla.
-2. Abre el programa en Arduino IDE.
-3. Selecciona la placa Arduino UNO y el puerto correspondiente.
-4. Carga el programa.
-5. Comprueba que la pantalla muestre temperatura y humedad.
-6. Para probar la alarma sin esperar a que el ambiente alcance 40 °C,
-   cambia temporalmente la condición t >= 40 por un umbral menor.
-   Después de la prueba, restablece el valor a 40.
-   
-Notas y solución de problemas
-- La pantalla no muestra datos: revisa SDA, SCL, alimentación y
-  dirección I2C.
-- Aparece "Error lectura": revisa la conexión DATA del DHT11, su
-  alimentación y el tipo de sensor configurado.
-- El LED no enciende: verifica su polaridad, la resistencia y que
-  esté conectado al pin 8 y a GND.
-- El buzzer no suena o suena bajo: revisa su polaridad y confirma
-  si es activo o pasivo. El buzzer pasivo requiere una señal de
-  frecuencia, por ejemplo tone(9, 1000). Cambiar la frecuencia
-  modifica el tono, pero no garantiza mayor volumen.
-- La alarma se repite: comprueba que el programa restablezca el
-  indicador de alarma únicamente cuando la temperatura baje de 40 °C.
-  
-Resultado esperado
-El sistema permite consultar la temperatura y la humedad en la pantalla
-LCD. Al detectar una temperatura de 40 °C o superior, emite tres avisos
-mediante el LED azul y el buzzer. Después espera a que la temperatura
-descienda por debajo del límite antes de permitir una nueva alerta.
-Autoría
-Proyecto académico realizado con Arduino UNO y componentes electrónicos
-básicos.
+---
+
+## 🛠️ Componentes Utilizados
+
+* 🎛️ **Arduino UNO**
+* 🌡️ **Sensor de temperatura y humedad DHT11**
+* 🖥️ **Pantalla LCD de 16 × 2** con módulo I2C
+* 💡 **LED azul**
+* 🛡️ **Resistencia** para el LED (220 Ω o 330 Ω)
+* 🔊 **Buzzer** (zumbador)
+* 🔌 **Protoboard y cables jumper**
+* 💻 **Cable USB** para alimentación y programación
+
+---
+
+## 🔌 Conexiones de Hardware
+
+| Componente | Conexión al Arduino |
+| :--- | :--- |
+| **DHT11 (DATA)** | Pin `A0` |
+| **LCD I2C (SDA)** | Pin `A4` |
+| **LCD I2C (SCL)** | Pin `A5` |
+| **LED azul (Ánodo / Pata larga)** | Pin `8` *(con resistencia)* |
+| **LED azul (Cátodo / Pata corta)** | `GND` |
+| **Buzzer (+)** | Pin `9` |
+| **Buzzer (-)** | `GND` |
+| **Alimentación de módulos** | `5V` y `GND` |
+
+> **⚠️ Notas de Montaje:**  
+> * El LED debe llevar obligatoriamente una resistencia en serie para evitar daños.  
+> * Comprueba las polaridades (`+` y `-`) del buzzer; la longitud de sus patas puede variar según el modelo.  
+> * Asegúrate de compartir adecuadamente la tierra (`GND`) entre todos los componentes y el Arduino.
+
+---
+
+## ⚙️ Configuración del Software
+
+### Requisitos Previos
+* [Arduino IDE](https://www.arduino.cc/en/software) instalado.
+* Biblioteca **DHT sensor library** (de Adafruit).
+* Biblioteca **LiquidCrystal_I2C**.
+* Biblioteca **Wire** (incluida por defecto en el entorno de Arduino).
+
+### Parámetros Principales del Código
+* **Sensor DHT11:** Pin `A0`
+* **LED azul:** Pin `8`
+* **Buzzer:** Pin `9`
+* **Dirección I2C del LCD:** `0x27` *(Nota: algunos módulos utilizan direcciones alternas como `0x3F`)*.
+* **Umbral de alarma:** `40 °C`
+* **Número de avisos:** `3`
+
+---
+
+## 🚀 Guía de Puesta en Marcha y Prueba
+
+1. **Montaje:** Conecta los componentes físicos siguiendo la tabla de conexiones detallada arriba.
+2. **Entorno:** Abre tu **Arduino IDE** y carga el código del proyecto (`.ino`).
+3. **Placa y Puerto:** Selecciona la placa correcta (*Arduino UNO*) y el puerto COM correspondiente en el menú de herramientas.
+4. **Carga:** Sube el programa a la placa.
+5. **Visualización:** Comprueba que la pantalla LCD encienda y despliegue las métricas de temperatura y humedad.
+6. **Prueba Rápida:** Para verificar la alarma sin necesidad de calentar todo el entorno a 40 °C, puedes cambiar temporalmente la condición en el código (`t >= 40`) por un valor menor. *No olvides restablecerlo a 40 después de validar*.
+
+---
+
+## 🔍 Solución de Problemas Frecuentes
+
+* **La pantalla no muestra datos:** Revisa las líneas `SDA`, `SCL`, la alimentación de `5V`/`GND` y valida la dirección I2C del módulo.
+* **Aparece "Error lectura":** Comprueba el cable de datos (`DATA`) del DHT11, su alimentación y asegúrate de haber seleccionado el tipo de sensor correcto en el código.
+* **El LED no enciende:** Verifica su polaridad, la presencia de la resistencia y que esté conectado al pin `8`.
+* **El buzzer no suena:** Confirma su polaridad y verifica si requiere una señal de frecuencia (por ejemplo, `tone(9, 1000)` si es un buzzer pasivo).
+* **La alarma se repite infinitamente:** Comprueba la lógica del programa para asegurarte de que el indicador de estado se restablezca únicamente cuando la temperatura baje del umbral establecido.
+
+---
+
+## ✨ Resultado Esperado
+
+El sistema opera de forma autónoma consultando y actualizando las métricas ambientales en la pantalla LCD. Al cruzar el umbral crítico de **40 °C**, despliega tres pulsos de alerta visuales y sonoros mediante el LED azul y el buzzer, bloqueando nuevas activaciones repetitivas hasta que las condiciones ambientales desciendan de forma segura.
